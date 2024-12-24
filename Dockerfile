@@ -11,7 +11,7 @@ ENV KARAFKA_ENV="production" \
     BUNDLE_WITHOUT="development test"
 
 RUN apt-get update -qq && apt-get install -y \
-  build-essential
+  build-essential tesseract-ocr
 
 RUN mkdir /ocr_app
 

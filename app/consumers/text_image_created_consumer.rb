@@ -16,17 +16,20 @@ class TextImageCreatedConsumer < ApplicationConsumer
       Karafka.logger.info message.payload
 
       # Karafka.producer.produce_async(topic: 'ocr', payload: {})
+
+      image = RTesseract.new(message.payload['file_path'])
+      text = image.to_s
       Karafka.producer
-               .produce_sync(key: 'entity.id.to_s',
+               .produce_sync(key: message.key,
                              topic: :ocr,
                              payload: { status: 'scanned',
-                                        test: 'bla bla bla' }.to_json)
+                                        test: text }.to_json)
       # Thought.create(content: message.payload.to_json)
     rescue StandardError => e
-      Karafka.logger.debug '*' * 88
-      Karafka.logger.debug e.message
-      Karafka.logger.debug e.backtrace.join("\n")
-      Karafka.logger.debug '*' * 88
+      p '*' * 88
+      p e.message
+      p e.backtrace.join("\n")
+      p '*' * 88
     end
   end
 end

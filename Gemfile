@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'karafka'
 gem 'rake'
+gem 'rtesseract'
 
 group :development, :test do
   gem 'karafka-testing'
