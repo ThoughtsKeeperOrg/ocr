@@ -6,8 +6,20 @@
 # The batch is accessible using the #messages method
 class TextImageCreatedConsumer < ApplicationConsumer
   def consume
+
+      p '@'*88
+
     messages.each do |message|
+      p message.payload
+      p message
       Karafka.logger.info message.payload
+
+      # Karafka.producer.produce_async(topic: 'ocr', payload: {})
+      Karafka.producer
+               .produce_sync(key: 'entity.id.to_s',
+                             topic: :ocr,
+                             payload: { status: 'scanned',
+                                        test: 'bla bla bla' }.to_json)
       # Thought.create(content: message.payload.to_json)
     rescue StandardError => e
       Karafka.logger.debug '*' * 88
