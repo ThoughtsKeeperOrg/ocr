@@ -1,0 +1,21 @@
+name: "CI"
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@401c19e14f474b54450cd3905bb8b86e2c8509cf
+        with:
+          bundler-cache: true
+      - name: Run tests
+        run: bundle exec rspec
