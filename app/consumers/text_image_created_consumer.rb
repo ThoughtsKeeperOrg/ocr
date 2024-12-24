@@ -12,6 +12,7 @@ class TextImageCreatedConsumer < ApplicationConsumer
     messages.each do |message|
       p message.payload
       p message
+      p message.key
       Karafka.logger.info message.payload
 
       # Karafka.producer.produce_async(topic: 'ocr', payload: {})

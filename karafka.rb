@@ -40,8 +40,6 @@ Karafka.producer.monitor.subscribe(
 App.consumer_groups.draw do
   consumer_group :batched_group do
     topic :textimage_created do
-
-      p '!'*88
       config(partitions: 1)
       consumer TextImageCreatedConsumer
     end
