@@ -15,10 +15,7 @@ class TextImageCreatedConsumer < ApplicationConsumer
       p message.key
       Karafka.logger.info message.payload
 
-      # Karafka.producer.produce_async(topic: 'ocr', payload: {})
-
-      image = RTesseract.new(message.payload['file_path'])
-      text = image.to_s
+      text =  RTesseract.new(message.payload['file_path'], lang:'eng+ukr+deu').to_s
       Karafka.producer
                .produce_sync(key: message.key,
                              topic: :ocr,
