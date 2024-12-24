@@ -23,7 +23,7 @@ class TextImageCreatedConsumer < ApplicationConsumer
                .produce_sync(key: message.key,
                              topic: :ocr,
                              payload: { status: 'scanned',
-                                        test: text }.to_json)
+                                        text: text }.to_json)
       # Thought.create(content: message.payload.to_json)
     rescue StandardError => e
       p '*' * 88
