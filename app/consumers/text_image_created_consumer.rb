@@ -3,6 +3,7 @@
 class TextImageCreatedConsumer < ApplicationConsumer
   def consume
     messages.each do |message|
+      Karafka.logger.info message.payload
       text =  RTesseract.new(message.payload['file_path'], lang:'eng+ukr+deu').to_s
       Karafka.producer
                .produce_sync(key: message.key,
