@@ -12,7 +12,6 @@ After processing image it publishes message to `ocr` topic.
 ENV
 
 ```
-LTM_STORAGE_PATH = '/ltm'
 KAFKA_CLIENT_ID=ocr_service
 KAFKA_SOCKET = kafka-broker:9093
 ```
