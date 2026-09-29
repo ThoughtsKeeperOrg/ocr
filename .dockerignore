@@ -1,0 +1,13 @@
+*.log
+*.tmp
+tmp/
+log/
+coverage/
+spec/
+.git
+.gitignore
+.bundle
+vendor/bundle
+storage/
+.DS_Store
+**/*.swp
